@@ -8,17 +8,17 @@ una interfaz interactiva.
 ```text
 ├── include
 │   ├── interfaz.hpp
+│   ├── permutacion_series.hpp
 │   ├── playfair.hpp
-│   ├── procesamiento.hpp
-│   └── transposicion.hpp
+│   └── procesamiento.hpp
 ├── Makefile
 └── src
+    ├── go_permu_series.cpp
     ├── go_playfair.cpp
-    ├── go_transp.cpp
     ├── interfaz.cpp
+    ├── permutacion_series.cpp
     ├── playfair.cpp
-    ├── procesamiento.cpp
-    └── transposicion.cpp
+    └── procesamiento.cpp
 ```
 
 ## Requerimientos
@@ -40,13 +40,13 @@ Ejecutar por separado
 - Algoritmo de Permutación por Series
 
 ```bash
-./build/go_t
+./build/go_ps
 ```
 
 - Algoritmo de Playfair
 
 ```bash
-./build/go_t
+./build/go_p
 ```
 
 ## Atajos
@@ -56,6 +56,10 @@ Funcionan sobre una celda activada por el mouse:
 | Combinación | Acción |
 |:-:|-|
 | `Ctrl` + `A` | Seleccionar todo |
+| `Ctrl` + `Shift` + `Left` / `Right` | Seleccionar |
 | `Ctrl` + `C` | Copiar |
 | `Ctrl` + `V` | Pegar |
 
+> [!NOTE]
+> Redimensionar alguna ventana de interfaz manualmente en ejecución, puede tener efectos como la detección de coordenadas
+> incorrectas del mouse sobre los elementos.
