@@ -95,8 +95,7 @@ std::size_t anterior_utf8(
 
   --posicion;
 
-  while (posicion > 0 &&
-       (static_cast<unsigned char>(texto[posicion]) & 0xC0) == 0x80) {
+  while (posicion > 0 && (static_cast<unsigned char>(texto[posicion]) & 0xC0) == 0x80) {
     --posicion;
   }
 
@@ -111,8 +110,7 @@ std::size_t siguiente_utf8(
 
   ++posicion;
 
-  while (posicion < texto.size() &&
-       (static_cast<unsigned char>(texto[posicion]) & 0xC0) == 0x80) {
+  while (posicion < texto.size() && (static_cast<unsigned char>(texto[posicion]) & 0xC0) == 0x80) {
     ++posicion;
   }
 
@@ -205,8 +203,7 @@ void dibujar_campo(
     + (campo.limites.size.y - 20.f) / 2.f;
 
   // Para mostrar la selección, se trabaja con posiciones Unicode.
-  const auto contar_caracteres = [](const std::string& s,
-                                  std::size_t bytes) {
+  const auto contar_caracteres = [](const std::string& s, std::size_t bytes) {
     std::size_t cuenta = 0;
     for (std::size_t i = 0; i < std::min(bytes, s.size()); ++cuenta) {
       i = siguiente_utf8(s, i);
@@ -215,9 +212,7 @@ void dibujar_campo(
   };
 
   if (campo.valor.empty() && campo.editable) {
-    dibujar_texto(
-      ventana, fuente, "Escribe aqui...", 16, SECUNDARIO, {x, y}
-    );
+    dibujar_texto(ventana, fuente, "Escribe aqui...", 16, SECUNDARIO, {x, y});
     return;
   }
 
@@ -230,8 +225,7 @@ void dibujar_campo(
   const std::size_t finChar = contar_caracteres(campo.valor, fin);
 
   // Resaltar selección cuando todo el texto es visible.
-  if (inicio != fin &&
-    texto.getLocalBounds().size.x <= campo.limites.size.x - 24.f) {
+  if (inicio != fin && texto.getLocalBounds().size.x <= campo.limites.size.x - 24.f) {
     sf::Text antes(fuente, contenido.substring(0, iniChar), 16);
     sf::Text seleccionado(
       fuente,
@@ -250,8 +244,7 @@ void dibujar_campo(
   }
 
   // Si la cadena es larga, muestra su parte inicial en esta versión.
-  while (!texto.getString().isEmpty() &&
-     texto.getLocalBounds().size.x > campo.limites.size.x - 24.f) {
+  while (!texto.getString().isEmpty() && texto.getLocalBounds().size.x > campo.limites.size.x - 24.f) {
     texto.setString(texto.getString().substring(
       0, texto.getString().getSize() - 1
     ));
@@ -379,8 +372,7 @@ void ejecutar(
         ventana.close();
       }
 
-      if (const auto* raton =
-            evento->getIf<sf::Event::MouseButtonPressed>()) {
+      if (const auto* raton = evento->getIf<sf::Event::MouseButtonPressed>()) {
         if (raton->button == sf::Mouse::Button::Left) {
           const sf::Vector2f punto(
             static_cast<float>(raton->position.x),
@@ -425,8 +417,7 @@ void ejecutar(
         }
       }
 
-      if (const auto* entrada =
-            evento->getIf<sf::Event::TextEntered>()) {
+      if (const auto* entrada = evento->getIf<sf::Event::TextEntered>()) {
         if (entrada->unicode >= 32 && entrada->unicode != 127) {
           for (auto* grupo : {&cifrado, &descifrado}) {
             for (auto& campo : *grupo) {
@@ -440,8 +431,7 @@ void ejecutar(
         }
       }
 
-      if (const auto* tecla =
-            evento->getIf<sf::Event::KeyPressed>()) {
+      if (const auto* tecla = evento->getIf<sf::Event::KeyPressed>()) {
         if (tecla->code == sf::Keyboard::Key::Escape) {
           ventana.close();
         }
@@ -502,36 +492,28 @@ void ejecutar(
               continue;
             }
 
-            if (tecla->code == sf::Keyboard::Key::Backspace &&
-              campo.editable) {
+            if (tecla->code == sf::Keyboard::Key::Backspace && campo.editable) {
               const auto [inicio, fin] = rango_seleccion(campo);
 
               if (inicio != fin) {
                 borrar_seleccion(campo);
               } else if (campo.cursor > 0) {
-                const auto anterior =
-                  anterior_utf8(campo.valor, campo.cursor);
-                campo.valor.erase(
-                  anterior, campo.cursor - anterior
-                );
+                const auto anterior = anterior_utf8(campo.valor, campo.cursor);
+                campo.valor.erase(anterior, campo.cursor - anterior);
                 campo.cursor = anterior;
                 campo.ancla = anterior;
               }
               continue;
             }
 
-            if (tecla->code == sf::Keyboard::Key::Delete &&
-              campo.editable) {
+            if (tecla->code == sf::Keyboard::Key::Delete && campo.editable) {
               const auto [inicio, fin] = rango_seleccion(campo);
 
               if (inicio != fin) {
                 borrar_seleccion(campo);
               } else if (campo.cursor < campo.valor.size()) {
-                const auto siguiente =
-                  siguiente_utf8(campo.valor, campo.cursor);
-                campo.valor.erase(
-                  campo.cursor, siguiente - campo.cursor
-                );
+                const auto siguiente = siguiente_utf8(campo.valor, campo.cursor);
+                campo.valor.erase(campo.cursor, siguiente - campo.cursor);
                 campo.ancla = campo.cursor;
               }
               continue;

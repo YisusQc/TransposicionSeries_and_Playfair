@@ -7,7 +7,7 @@
 int main() {
   try {
     interfaz::ejecutar(
-      "Transposicion por bloques",
+      "Permutacion de Series",
       transposicion::cifrar,
       transposicion::descifrar
     );

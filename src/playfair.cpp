@@ -26,8 +26,7 @@ std::string unificar_ij(std::string texto) {
 }
 
 std::string preparar_clave(const std::string& clave_original) {
-  std::string clave =
-    unificar_ij(procesamiento::normalizar(clave_original));
+  std::string clave = unificar_ij(procesamiento::normalizar(clave_original));
 
   if (clave.empty()) {
     throw std::invalid_argument(
@@ -192,8 +191,7 @@ std::string descifrar(
   const std::string& clave_original
 ) {
   const std::string clave = preparar_clave(clave_original);
-  const std::string cifrado =
-    unificar_ij(procesamiento::normalizar(texto));
+  const std::string cifrado = unificar_ij(procesamiento::normalizar(texto));
 
   if (cifrado.empty()) {
     throw std::invalid_argument(

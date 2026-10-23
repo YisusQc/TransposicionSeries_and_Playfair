@@ -19,9 +19,7 @@ std::vector<std::size_t> validar_clave(
 ) {
   // Aceptar solamente numeros separados por espacios
   // o comas, sin texto adicional.
-  static const std::regex formato(
-    R"([0-9]+(?:[\s,]+[0-9]+)*)"
-  );
+  static const std::regex formato(R"([0-9]+(?:[\s,]+[0-9]+)*)");
 
   if (!std::regex_match(clave, formato)) {
     throw std::invalid_argument(
@@ -112,8 +110,7 @@ std::string transformar(
     inicio < texto.size();
     inicio += n) {
 
-    const std::size_t longitud =
-      std::min(n, texto.size() - inicio);
+    const std::size_t longitud = std::min(n, texto.size() - inicio);
 
     // Conservar, en el orden de la clave, solo las
     // posiciones que existen en este bloque.
@@ -135,8 +132,7 @@ std::string transformar(
       std::string bloque_original(longitud, '\0');
 
       for (std::size_t i = 0; i < orden.size(); ++i) {
-        bloque_original[orden[i]] =
-          texto[inicio + i];
+        bloque_original[orden[i]] = texto[inicio + i];
       }
 
       resultado += bloque_original;

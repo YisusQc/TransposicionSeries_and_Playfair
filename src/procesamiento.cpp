@@ -10,8 +10,7 @@ std::string normalizar(const std::string& texto) {
   resultado.reserve(texto.size());
 
   for (std::size_t i = 0; i < texto.size();) {
-    // Los reemplazos UTF-8 se reconocen antes de procesar
-    // los caracteres ASCII.
+    // Los reemplazos UTF-8 se reconocen antes de procesar los caracteres ASCII.
     if (i + 1 < texto.size()) {
       const std::string par = texto.substr(i, 2);
 
@@ -38,12 +37,10 @@ std::string normalizar(const std::string& texto) {
       }
     }
 
-    const unsigned char c =
-      static_cast<unsigned char>(texto[i]);
+    const unsigned char c = static_cast<unsigned char>(texto[i]);
 
     if (c < 128) {
-      const char mayuscula =
-        static_cast<char>(std::toupper(c));
+      const char mayuscula = static_cast<char>(std::toupper(c));
 
       if (mayuscula >= 'A' && mayuscula <= 'Z') {
         resultado += mayuscula;
