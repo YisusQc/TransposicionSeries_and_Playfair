@@ -7,7 +7,7 @@
 int main() {
   try {
     interfaz::ejecutar(
-      "Permutacion de Series",
+      "Cifrado Permutacion de Series",
       transposicion::cifrar,
       transposicion::descifrar
     );
