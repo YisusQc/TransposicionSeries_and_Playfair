@@ -1,4 +1,4 @@
-#include "../include/transposicion.hpp"
+#include "../include/permutacion_series.hpp"
 #include "../include/procesamiento.hpp"
 
 #include <algorithm>

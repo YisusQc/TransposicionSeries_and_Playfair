@@ -1,5 +1,5 @@
 #include "../include/interfaz.hpp"
-#include "../include/transposicion.hpp"
+#include "../include/permutacion_series.hpp"
 
 #include <exception>
 #include <iostream>
