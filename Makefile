@@ -12,7 +12,7 @@ all: go_t go_p
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-go_t: $(COMMON) src/permutacion_series.cpp src/go_transp.cpp | $(BUILD_DIR)
+go_t: $(COMMON) src/permutacion_series.cpp src/go_permu_series.cpp | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $^ -o $(BUILD_DIR)/go_t $(SFML_LIBS)
 
 go_p: $(COMMON) src/playfair.cpp src/go_playfair.cpp | $(BUILD_DIR)
