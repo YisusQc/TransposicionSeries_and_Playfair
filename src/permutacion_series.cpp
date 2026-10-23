@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace transposicion {
+namespace permutacion_series {
 
 namespace {
 

@@ -8,8 +8,8 @@ int main() {
   try {
     interfaz::ejecutar(
       "Cifrado Permutacion de Series",
-      transposicion::cifrar,
-      transposicion::descifrar
+      permutacion_series::cifrar,
+      permutacion_series::descifrar
     );
   } catch (const std::exception& e) {
     std::cerr << "Error al iniciar la interfaz: "

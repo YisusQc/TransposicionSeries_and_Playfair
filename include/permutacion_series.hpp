@@ -1,9 +1,9 @@
-#ifndef TRANSPOSICION_HPP
-#define TRANSPOSICION_HPP
+#ifndef PERMUTACION_SERIES_HPP
+#define PERMUTACION_SERIES_HPP
 
 #include <string>
 
-namespace transposicion {
+namespace permutacion_series {
 
   std::string cifrar(
     const std::string& texto,
